@@ -1,48 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Beauty home | Buscar</title>
-    <link rel="stylesheet" href="style/busca.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style/busca.css" />
+  </head>
+  <body>
     <header>
-        <div class="container-header">
-            <img src="img/logo-beauty-p.jpg" alt="">
-            <h1>Beauty Home</h1>
-        </div>
-        <div class="container-header">
-            <ul>
-                <li id="btn-sem">
-                    <a href="suporte.html">Suporte</a>
-                </li>
-                <li id="btn-solid">
-                    <a href="#">Conta</a>
-                </li>
-            </ul>
-        </div>
+      <div class="container-header">
+        <img src="img/logo-beauty-p.jpg" alt="" />
+        <h1>Beauty Home</h1>
+      </div>
+      <div class="container-header">
+        <ul>
+          <li id="btn-sem">
+            <a href="suporte.html">Suporte</a>
+          </li>
+          <li id="btn-solid">
+            <a href="#">Conta</a>
+          </li>
+        </ul>
+      </div>
     </header>
     <main>
-        <div id="container-main">
-            <div id="container-input">
-                <h2>Lorem, ipsum dolor.</h2>
-                <h2>Lorem, ipsum dolor.</h2>
-                <h2>Lorem, ipsum dolor.</h2>
-                <form id="pesquisa-entrada">
-                    <details>
-                        <option value="Cabelereira">Cabelereira</option>
-                        <option value="design de sobrancelha"></option>
-                        <option value="Manicure"></option>
-                    </details>
-                    <input type="text" placeholder="Informe o local">
-                    <button type="button">Pesquisar</button>
-               </form>
-            </div>
-            <div id="container-img">
-                <img src="img/Ilustração do conceito de autoconfiança-p.jpeg" alt="">
-            </div>
+      <div id="container-main">
+        <div id="container-input">
+          <h2>DIGITE O CEP ABAIXO</h2>
+          <form id="pesquisa-entrada">
+            <input type="text" placeholder="Informe o CEP" id="CEP" />
+            <button onclick="buscaCep()" type="button">Pesquisar</button>
+            <div id="cep-result"></div>
+          </form>
         </div>
+        <div id="container-img">
+          <img
+            src="img/Ilustração do conceito de autoconfiança-p.jpeg"
+            alt=""
+          />
+        </div>
+      </div>
     </main>
-</body>
+
+    <script>
+      const BUSCARCEP = "https://viacep.com.br/ws/";
+
+      function buscaCep() {
+        const cepInput = document.getElementById("CEP");
+        const cepValue = cepInput.value;
+        const url = `${BUSCARCEP}${cepValue}/json/`;
+
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            const cepResult = document.getElementById("cep-result");
+            cepResult.innerHTML = "";
+
+            function criarCampo(labelText, inputName, inputValue) {
+              const label = document.createElement("label");
+              label.innerText = labelText;
+
+              const input = document.createElement("input");
+              input.name = inputName;
+              input.type = "text";
+              input.placeholder = labelText;
+              input.value = inputValue;
+
+              cepResult.appendChild(label);
+              cepResult.appendChild(input);
+              cepResult.appendChild(document.createElement("br"));
+            }
+
+            criarCampo("Cidade", "cidade", data.localidade);
+            criarCampo("Bairro", "bairro", data.bairro);
+            criarCampo("UF", "uf", data.uf);
+            criarCampo("Logradouro", "logradouro", data.logradouro);
+
+            const salvarButton = document.createElement("button");
+            salvarButton.innerText = "Salvar";
+            salvarButton.onclick = function () {
+              alert("Dados salvos com sucesso!");
+            };
+            cepResult.appendChild(salvarButton);
+          })
+          .catch((error) => console.error("Erro ao buscar o CEP:", error));
+      }
+    </script>
+  </body>
 </html>
