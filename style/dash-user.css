@@ -1,0 +1,247 @@
+/* Importando a fonte do footer */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+* {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilização do header */
+header {
+  height: 80px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 100px;
+}
+
+.container-header {
+  display: flex;
+  align-items: center;
+}
+
+.container-header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  margin-right: 15px;
+
+}
+
+h1 {
+  font-weight: 300;
+  padding-right: 1000px;
+}
+
+.container-header {
+  display: flex;
+  list-style-type: none;
+  font-size: 16px;
+  margin-left: auto;
+}
+
+.container-header button {
+  margin-left: 20px;
+}
+
+.container-header button {
+  color: white; 
+  background-color: black;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+
+#btn:hover {
+  color: rgb(132, 13, 201);
+}
+
+#btn-solid {
+  border: 2px solid rgb(132, 13, 201);
+  border-radius: 10px;
+  padding: 8px;
+  transition: background-color 0.3s;
+}
+
+#btn-solid:hover {
+  background-color: rgb(132, 13, 201);
+  color: white;
+}
+
+/* Estilização do main */
+.container {
+  display: flex;
+  width: 100%;
+  height: 700px;
+}
+
+/* Barra lateral */
+.sidebar {
+  width: 250px;
+  background-color: rgb(132, 13, 201); /*#2c3e50*/
+  color: white;
+  height: 950px;
+  padding: 20px;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  transition: width 0.3s;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+  color: #f39c12;
+}
+
+/* Conteúdo principal */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.main-content header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-info p {
+  font-size: 18px;
+}
+
+.user-info button {
+  background-color: #f39c12;
+  border: none;
+  padding: 10px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  text-align: center;
+}
+
+.chart-container {
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #34495e;
+  color: white;
+}
+
+/* Botões */
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+ul.item-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul.item-list li {
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+ul.item-list li button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Estilização de formulários */
+form div {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input, form select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Conteúdo oculto */
+.content {
+  display: none;
+}
+
+.content.active {
+  display: block;
+}

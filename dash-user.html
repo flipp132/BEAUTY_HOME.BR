@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Home | Dashboard</title>
+    <link rel="stylesheet" href="style/dash-user.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container-header">
+            <img src="img/logo-beauty-p.jpg" alt="Logo Beauty Home">
+            <h1>Beauty Home</h1>
+        </div>
+        <div class="container-header">
+            <a href="suporte.html">
+                <button id="btn">Suporte</button>
+            </a>
+            <a href="pre-login.html">
+                <button id="btn-solid">Conta</button>
+            </a>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <!-- Barra lateral -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Cuidados Pessoais</h2>
+                </div>
+                <ul>
+                    <li><a href="#" onclick="showContent('home')">Início</a></li>
+                    <li><a href="#" onclick="showContent('profile')">Perfil</a></li>
+                    <li><a href="#" onclick="showContent('history')">Histórico</a></li>
+                    <li><a href="#" onclick="showContent('recommendations')">Recomendações</a></li>
+                    <li><a href="#" onclick="showContent('calendar')">Agenda</a></li>
+                </ul>
+            </div>
+    
+            <!-- Área principal -->
+            <div class="main-content">
+                <header>
+                    <div class="user-info">
+                        <p>Bem-vindo, <strong>Maria</strong></p>
+                        <button onclick="toggleNotifications()">Notificações <span id="notification-count">3</span></button>
+                    </div>
+                </header>
+    
+                <!-- Seções -->
+                <div id="home" class="content active">
+                    <h1>Dashboard de Cuidados Pessoais</h1>
+                    <p>Monitore seu progresso e agende seus cuidados.</p>
+                    
+                    <div class="cards">
+                        <div class="card">
+                            <h3>Última Consulta</h3>
+                            <p>10/10/2024 - Dermatologia</p>
+                        </div>
+                        <div class="card">
+                            <h3>Próxima Consulta</h3>
+                            <p>15/10/2024 - Nutrição</p>
+                        </div>
+                        <div class="card">
+                            <h3>Produtos Recomendados</h3>
+                            <p>Creme Anti-Acne, Shampoo Hidratante</p>
+                        </div>
+                    </div>
+    
+                    <div class="chart-container">
+                        <canvas id="healthProgressChart"></canvas>
+                    </div>
+                </div>
+    
+                <div id="profile" class="content">
+                    <h1>Perfil</h1>
+                    <p>Gerencie suas informações pessoais e de saúde.</p>
+                    <form id="profile-form">
+                        <div>
+                            <label for="name">Nome:</label>
+                            <input type="text" id="name" value="Maria Silva" />
+                        </div>
+                        <div>
+                            <label for="dob">Data de Nascimento:</label>
+                            <input type="date" id="dob" value="1990-05-14" />
+                        </div>
+                        <div>
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" value="maria.silva@email.com" />
+                        </div>
+                        <button type="submit">Salvar Alterações</button>
+                    </form>
+                </div>
+    
+                <div id="history" class="content">
+                    <h1>Histórico de Cuidados</h1>
+                    <table id="history-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Tratamento</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10/10/2024</td>
+                                <td>Consulta Dermatológica</td>
+                                <td>Concluído</td>
+                            </tr>
+                            <tr>
+                                <td>05/10/2024</td>
+                                <td>Tratamento Capilar</td>
+                                <td>Concluído</td>
+                            </tr>
+                            <tr>
+                                <td>01/10/2024</td>
+                                <td>Exame de Sangue</td>
+                                <td>Em andamento</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div id="recommendations" class="content">
+                    <h1>Produtos Recomendados</h1>
+                    <ul>
+                        <li>Creme Anti-Acne - R$ 89,90 <button>Adicionar ao Carrinho</button></li>
+                        <li>Shampoo Hidratante - R$ 45,00 <button>Adicionar ao Carrinho</button></li>
+                        <li>Protetor Solar FPS 50 - R$ 39,90 <button>Adicionar ao Carrinho</button></li>
+                    </ul>
+                </div>
+    
+                <div id="calendar" class="content">
+                    <h1>Agenda de Consultas</h1>
+                    <p>Agende suas consultas de cuidados pessoais.</p>
+                    <div>
+                        <label for="appointment-date">Data da Consulta:</label>
+                        <input type="date" id="appointment-date" />
+                    </div>
+                    <div>
+                        <label for="appointment-type">Tipo de Consulta:</label>
+                        <select id="appointment-type">
+                            <option value="dermatology">Dermatologia</option>
+                            <option value="nutrition">Nutrição</option>
+                            <option value="dentistry">Odontologia</option>
+                        </select>
+                    </div>
+                    <button>Agendar Consulta</button>
+                </div>
+            </div>
+        </div>
+    
+        <script src="src/dash.js"></script>
+    </main>
+
+    <script>
+        // Função para mostrar conteúdo dinâmico
+        function showContent(section) {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const contentToShow = document.getElementById(section);
+            if (contentToShow) contentToShow.classList.add('active');
+        }
+
+        // Função para alternar notificações
+        function toggleNotifications() {
+            const notificationCount = document.getElementById('notification-count');
+            const count = parseInt(notificationCount.textContent);
+            notificationCount.textContent = count > 0 ? '0' : '3';
+        }
+
+        // Inicialização do gráfico de saúde
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('healthProgressChart').getContext('2d');
+            const healthProgressChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                    datasets: [{
+                        label: 'Progresso de Saúde',
+                        data: [70, 75, 80, 85, 90, 95],
+                        borderColor: '#3498db',
+                        fill: false,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
